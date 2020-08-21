@@ -1,32 +1,9 @@
 import numpy as np
 def conv_forward_naive(x, w, b, conv_param):
         """
-        A naive implementation of the forward pass for a convolutional layer.
-
         The input consists of N data points, each with C channels, height H and
         width W. We convolve each input with F different filters, where each filter
         spans all C channels and has height HH and width WW.
-
-        Input:
-        - x: Input data of shape (N, C, H, W)
-        - w: Filter weights of shape (F, C, HH, WW)
-        - b: Biases, of shape (F,)
-        - conv_param: A dictionary with the following keys:
-        - 'stride': The number of pixels between adjacent receptive fields in the
-            horizontal and vertical directions.
-        - 'pad': The number of pixels that will be used to zero-pad the input. 
-            
-
-        During padding, 'pad' zeros should be placed symmetrically (i.e equally on both sides)
-        along the height and width axes of the input. Be careful not to modfiy the original
-        input x directly.
-
-        Returns a tuple of:
-        - out: Output data, of shape (N, F, H', W') where H' and W' are given by
-        H' = 1 + (H + 2 * pad - HH) / stride
-        W' = 1 + (W + 2 * pad - WW) / stride
-        H' = (W - HH )
-        - cache: (x, w, b, conv_param)
         """
         
         pad = conv_param['pad'] # Padding number
@@ -56,24 +33,6 @@ def conv_forward_naive(x, w, b, conv_param):
         return activation_map, cache
 
 def max_pool_forward_naive(x, pool_param):
-    """
-    A naive implementation of the forward pass for a max-pooling layer.
-
-    Inputs:
-    - x: Input data, of shape (N, C, H, W)
-    - pool_param: dictionary with the following keys:
-      - 'pool_height': The height of each pooling region
-      - 'pool_width': The width of each pooling region
-      - 'stride': The distance between adjacent pooling regions
-
-    No padding is necessary here. Output size is given by 
-
-    Returns a tuple of:
-    - out: Output data, of shape (N, C, H', W') where H' and W' are given by
-      H' = 1 + (H - pool_height) / stride
-      W' = 1 + (W - pool_width) / stride
-    - cache: (x, pool_param)
-    """
     pool_height = pool_param['pool_height'] # Height of pool
     pool_width = pool_param['pool_width'] # Width of pool
     stride = pool_param['stride'] # Stride number
